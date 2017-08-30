@@ -1,4 +1,5 @@
-var path = require('path')
+var path = require('path');
+var webpack = require('webpack');
 var outputRoot = path.join(__dirname, '../output');
 var srcRoot = path.join(__dirname, '../src');
 
@@ -11,7 +12,7 @@ module.exports = {
     },
     output: {
         path: outputRoot,
-        filename: '[name].js'
+        filename: '[name].[chunkhash].js'
     },
     module: {
         rules: [
@@ -32,10 +33,15 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin("styles.css"),
+        new ExtractTextPlugin("styles.[chunkhash].css"),
         new HtmlWebpackPlugin({
             template: path.join(srcRoot, './index.html'),
             inject: true
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
         })
     ]
 }
