@@ -1,0 +1,1 @@
+webpackJsonp([0],{3:function(e,o,t){"use strict";e.exports={sayHello:function(e){console.log("I am page two")}}},6:function(e,o,t){"use strict";function l(e){return e&&e.__esModule?e:{default:e}}var n=t(0),s=l(n),u=t(3),a=l(u);t(1),s.default.sayHello(),a.default.sayHello()}},[6]);

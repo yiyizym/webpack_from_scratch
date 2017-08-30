@@ -4,13 +4,10 @@ var outputRoot = path.join(__dirname, '../output');
 var srcRoot = path.join(__dirname, '../src');
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackCleanupPlugin  = require('webpack-cleanup-plugin');
 
-module.exports = {
-    entry: {
-        bundle: path.join(srcRoot, './main.js')
-    },
+var conf = {
+    entry: {},
     output: {
         path: outputRoot,
         filename: '[name].[chunkhash].js'
@@ -35,15 +32,17 @@ module.exports = {
     },
     plugins: [
         new WebpackCleanupPlugin(),
-        new ExtractTextPlugin("styles.[chunkhash].css"),
-        new HtmlWebpackPlugin({
-            template: path.join(srcRoot, './index.html'),
-            inject: true
-        }),
+        new ExtractTextPlugin({filename: "styles.[chunkhash].css", allChunks: true}),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
             }
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'common', // 将公共模块提取,生成名为`common`的chunk
+            minChunks: 2 // 提取至少3个模块共有的部分
         })
     ]
 }
+
+module.exports = conf;
