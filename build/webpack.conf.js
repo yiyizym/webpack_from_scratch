@@ -5,6 +5,7 @@ var srcRoot = path.join(__dirname, '../src');
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackCleanupPlugin  = require('webpack-cleanup-plugin');
 
 module.exports = {
     entry: {
@@ -33,6 +34,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new WebpackCleanupPlugin(),
         new ExtractTextPlugin("styles.[chunkhash].css"),
         new HtmlWebpackPlugin({
             template: path.join(srcRoot, './index.html'),
