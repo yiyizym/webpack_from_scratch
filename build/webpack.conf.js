@@ -3,6 +3,7 @@ var outputRoot = path.join(__dirname, '../output');
 var srcRoot = path.join(__dirname, '../src');
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -32,5 +33,9 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin("styles.css"),
+        new HtmlWebpackPlugin({
+            template: path.join(srcRoot, './index.html'),
+            inject: true
+        })
     ]
 }
