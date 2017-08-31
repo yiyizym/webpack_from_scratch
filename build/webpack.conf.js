@@ -1,17 +1,13 @@
 var fs = require('fs');
 var path = require('path');
 var webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const WebpackCleanupPlugin  = require('webpack-cleanup-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 var config = require('./conf.js');
 
 var webpackConfig = {
     entry: {},
-    output: {
-        path: config.outputRoot,
-        filename: '[name].[chunkhash].js'
-    },
     module: {
         rules: [
             {
@@ -20,28 +16,11 @@ var webpackConfig = {
                     { loader: 'babel-loader' }
                 ],
                 include: config.srcRoot
-            },
-            {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
-                })
             }
         ]
     },
     plugins: [
         new WebpackCleanupPlugin(),
-        new ExtractTextPlugin({filename: "styles.[chunkhash].css", allChunks: true}),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'common', // 将公共模块提取,生成名为`common`的chunk
-            minChunks: 2 // 提取至少2个模块共有的部分
-        })
     ]
 }
 

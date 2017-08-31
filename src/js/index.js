@@ -1,4 +1,4 @@
 import app from './app.js';
-import '../css/app.css';
+require('../css/app.css');
 
 app.sayHello();
