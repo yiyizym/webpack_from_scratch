@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-    srcRoot: path.join(__dirname, '../src'),
-    outputRoot: path.join(__dirname, '../output'),
-    distRoot: path.join(__dirname, '../dist')
+    srcRoot: path.resolve(__dirname, '../src'),
+    outputRoot: path.resolve(__dirname, '../output'),
+    distRoot: path.resolve(__dirname, '../dist')
 }

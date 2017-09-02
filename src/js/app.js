@@ -1,8 +1,8 @@
 const app = {
     sayHello: _ => {
         let text = document.createElement('span');
-        text.textContent = 'Hello!!';
-        document.querySelector('.app').appendChild(text);
+        text.textContent = 'Hello!!!';
+        document.querySelector('body').appendChild(text);
         console.log(' hello !');
     }
 }
