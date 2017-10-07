@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node build/start_server.js",
+    "start": "npm run lint & node build/start_server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node build/build.js"
+    "build": "npm run lint & node build/build.js",
+    "lint": "./node_modules/.bin/eslint --ext .js ./src/js"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "css-loader": "^0.28.5",
+    "eslint": "^4.8.0",
     "extract-text-webpack-plugin": "^2.1.2",
     "html-webpack-plugin": "^2.30.1",
     "style-loader": "^0.18.2",

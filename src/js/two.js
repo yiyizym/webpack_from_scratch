@@ -1,5 +1,5 @@
 module.exports = {
-    sayHello: _ => {
+    sayHello: () => {
         console.log('I am page two');
     }
-}
+};
