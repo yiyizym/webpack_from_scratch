@@ -1,5 +1,5 @@
 module.exports = {
     sayHello: () => {
-        console.log('I am page one!');
+        console.log('I am page one!!!');
     }
 };
